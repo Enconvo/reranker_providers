@@ -1,0 +1,108 @@
+{
+  "$schema": "https://enconvo.com/schemas/extension.json",
+  "name": "reranker_providers",
+  "version": "0.0.1",
+  "description": "Reranker Providers",
+  "title": "Reranker Providers",
+  "icon": "icon.png",
+  "author": "EnconvoAI",
+  "license": "MIT",
+  "categories": [
+    "Provider"
+  ],
+  "type": "module",
+  "commands": [
+    {
+      "name": "enconvo_ai",
+      "title": "EnConvo Cloud Plan",
+      "description": "Reranker with Enconvo Cloud Plan , learn more : [docs](https://docs.enconvo.com/docs/providers/reranker)",
+      "icon": "enconvo.png",
+      "mode": "provider",
+      "preferences": [
+        {
+          "name": "modelName",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "voyage/rerank-2",
+          "data": [
+            {
+              "title": "rerank-2",
+              "value": "voyage/rerank-2",
+              "context": 16000
+            },
+            {
+              "title": "rerank-2-lite",
+              "value": "voyage/rerank-2-lite",
+              "context": 8000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "voyage_ai",
+      "title": "Voyage AI",
+      "description": "Reranker with Voyage AI , learn more : [docs](https://docs.voyageai.com/docs/reranker)",
+      "icon": "voyage.png",
+      "mode": "provider",
+      "preferences": [
+        {
+          "name": "modelName",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": true,
+          "title": "Model Name",
+          "default": "rerank-2",
+          "data": [
+            {
+              "title": "rerank-2",
+              "value": "rerank-2",
+              "context": 16000
+            },
+            {
+              "title": "rerank-2-lite",
+              "value": "rerank-2-lite",
+              "context": 8000
+            }
+          ]
+        },
+        {
+          "name": "apiKey",
+          "description": "The API key to use for the Voyage AI API.",
+          "type": "password",
+          "required": true,
+          "title": "API Key"
+        }
+      ]
+    }
+  ],
+  "dependencies": {
+    "@enconvo/api": "link:/Users/ysnows/Documents/Project/enconvo.nodejs/enconvo_api",
+    "@langchain/azure-openai": "^0.0.7",
+    "@langchain/cohere": "^0.0.7",
+    "@langchain/community": "^0.0.49",
+    "axios": "^1.6.8",
+    "@langchain/core": "^0.1.58",
+    "cohere-ai": "^7.9.4",
+    "langchain": "^0.1.33",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.31",
+    "eslint": "^8.57.0",
+    "prettier": "^2.8.8",
+    "tsup": "^7.2.0",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "lint:fix": "npm run lint --fix",
+    "format": "prettier --write \"**/*.ts\"",
+    "format:check": "prettier --list-different \"**/*.ts\"",
+    "build": "enconvo",
+    "dev": "enconvo --dev"
+  },
+  "minAppVersion": "1.8.8"
+}
