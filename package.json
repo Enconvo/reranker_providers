@@ -23,17 +23,17 @@
           "name": "modelName",
           "description": "The model to generate the completion.",
           "type": "dropdown",
-          "required": false,
+          "required": true,
           "title": "Model Name",
           "default": "voyage/rerank-2",
           "data": [
             {
-              "title": "rerank-2",
+              "title": "Voyage Rerank-2 (40 points per invoke)",
               "value": "voyage/rerank-2",
               "context": 16000
             },
             {
-              "title": "rerank-2-lite",
+              "title": "Voyage Rerank-2 Lite (10 points per invoke)",
               "value": "voyage/rerank-2-lite",
               "context": 8000
             }
@@ -72,8 +72,58 @@
           "name": "apiKey",
           "description": "The API key to use for the Voyage AI API.",
           "type": "password",
+          "default": "",
           "required": true,
           "title": "API Key"
+        }
+      ]
+    },
+    {
+      "name": "siliconflow",
+      "title": "SiliconFlow",
+      "description": "Reranker with [SiliconFlow](https://siliconflow.cn)",
+      "icon": "siliconflow.png",
+      "mode": "provider",
+      "preferences": [
+        {
+          "name": "modelName",
+          "description": "The model to generate the reranker.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "netease-youdao/bce-reranker-base_v1",
+          "data": [
+            {
+              "title": "BAAI/bge-reranker-v2-m3",
+              "value": "BAAI/bge-reranker-v2-m3",
+              "context": 8000
+            },
+            {
+              "title": "netease-youdao/bce-reranker-base_v1",
+              "value": "netease-youdao/bce-reranker-base_v1",
+              "context": 512
+            }
+          ]
+        },
+        {
+          "name": "openAIApiKey",
+          "description": "How to get api key? [🔑here](https://cloud.siliconflow.cn/account/ak)",
+          "type": "password",
+          "required": false,
+          "title": "API Key",
+          "default": "",
+          "defaultProxy": "KEY_SILICONFLOW_APIKEY",
+          "placeholder": "sk-********"
+        },
+        {
+          "name": "baseUrl",
+          "description": "OpenAI api base url",
+          "type": "textfield",
+          "required": false,
+          "title": "OpenAI Api Base Url",
+          "default": "https://api.siliconflow.cn/v1",
+          "placeholder": "Api Base Url",
+          "visibility": "hidden"
         }
       ]
     }

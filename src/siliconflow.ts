@@ -1,26 +1,22 @@
-import { env } from 'process';
 import { RerankerProvider, RerankerOptions, RerankResult } from './reranker_provider.ts';
 import axios from 'axios';
 
 
 export default function main(rerankerOptions: RerankerOptions) {
 
-    return new EnConvoRerankerProvider({ options: rerankerOptions })
+    return new VoyageRerankerProvider({ options: rerankerOptions })
 
 }
 
 
-export class EnConvoRerankerProvider extends RerankerProvider {
+export class VoyageRerankerProvider extends RerankerProvider {
 
     constructor(fields: { options: RerankerOptions }) {
         super(fields);
     }
 
     protected async _rerank(query: string, documents: string[]): Promise<RerankResult> {
-        // console.log("input", input)
-
-        // const response = await axios.post('http://127.0.0.1:8181/v1/rerank',
-        const response = await axios.post('https://api.enconvo.com/v1/rerank',
+        const response = await axios.post('https://api.siliconflow.cn/v1/rerank',
             {
                 query: query,
                 documents: documents,
@@ -28,24 +24,20 @@ export class EnConvoRerankerProvider extends RerankerProvider {
             },
             {
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    "accessToken": `${env['accessToken']}`,
-                    "client_id": `${env['client_id']}`,
-                    "commandKey": `${env['commandKey']}`
+                    'Authorization': `Bearer ${this.options.openAIApiKey}`,
                 }
             }
         );
 
+        console.log("response.data.meta", response.data.meta)
         return {
-            properties: {
-                model: response.data.model,
-                usage: response.data.usage
-            },
-            data: response.data.data.map((item: any) => ({
+            properties: {},
+            data: response.data.results.map((item: any) => ({
                 relevance_score: item.relevance_score,
                 index: item.index
             }))
         };
-
     }
 }
