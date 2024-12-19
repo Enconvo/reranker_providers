@@ -1,21 +1,21 @@
-import { RerankerProvider, RerankerOptions, RerankResult } from './reranker_provider.ts';
+import { RerankerProvider } from '@enconvo/api';
 import axios from 'axios';
 
 
-export default function main(rerankerOptions: RerankerOptions) {
+export default function main(options: RerankerProvider.RerankerOptions) {
 
-    return new VoyageRerankerProvider({ options: rerankerOptions })
+    return new SiliconFlowRerankerProvider({ options })
 
 }
 
 
-export class VoyageRerankerProvider extends RerankerProvider {
+export class SiliconFlowRerankerProvider extends RerankerProvider {
 
-    constructor(fields: { options: RerankerOptions }) {
+    constructor(fields: { options: RerankerProvider.RerankerOptions }) {
         super(fields);
     }
 
-    protected async _rerank(query: string, documents: string[]): Promise<RerankResult> {
+    protected async _rerank(query: string, documents: string[]): Promise<RerankerProvider.RerankResult> {
         const response = await axios.post('https://api.siliconflow.cn/v1/rerank',
             {
                 query: query,

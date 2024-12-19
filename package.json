@@ -1,12 +1,13 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "reranker_providers",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Reranker Providers",
   "title": "Reranker Providers",
   "icon": "icon.png",
   "author": "EnconvoAI",
   "license": "MIT",
+  "minAppVersion": "1.8.8",
   "categories": [
     "Provider"
   ],
@@ -129,15 +130,8 @@
     }
   ],
   "dependencies": {
-    "@enconvo/api": "link:/Users/ysnows/Documents/Project/enconvo.nodejs/enconvo_api",
-    "@langchain/azure-openai": "^0.0.7",
-    "@langchain/cohere": "^0.0.7",
-    "@langchain/community": "^0.0.49",
-    "axios": "^1.6.8",
-    "@langchain/core": "^0.1.58",
-    "cohere-ai": "^7.9.4",
-    "langchain": "^0.1.33",
-    "uuid": "^9.0.1"
+    "@enconvo/api": "^0.1.152",
+    "axios": "^1.6.8"
   },
   "devDependencies": {
     "@types/node": "^18.19.31",
@@ -153,6 +147,5 @@
     "format:check": "prettier --list-different \"**/*.ts\"",
     "build": "enconvo",
     "dev": "enconvo --dev"
-  },
-  "minAppVersion": "1.8.8"
+  }
 }

@@ -1,22 +1,21 @@
 import { env } from 'process';
-import { RerankerProvider, RerankerOptions, RerankResult } from './reranker_provider.ts';
 import axios from 'axios';
+import { RerankerProvider } from '@enconvo/api';
 
 
-export default function main(rerankerOptions: RerankerOptions) {
+export default function main(options: RerankerProvider.RerankerOptions) {
 
-    return new EnConvoRerankerProvider({ options: rerankerOptions })
-
+    return new EnConvoRerankerProvider({ options })
 }
 
 
 export class EnConvoRerankerProvider extends RerankerProvider {
 
-    constructor(fields: { options: RerankerOptions }) {
+    constructor(fields: { options: RerankerProvider.RerankerOptions }) {
         super(fields);
     }
 
-    protected async _rerank(query: string, documents: string[]): Promise<RerankResult> {
+    protected async _rerank(query: string, documents: string[]): Promise<RerankerProvider.RerankResult> {
         // console.log("input", input)
 
         // const response = await axios.post('http://127.0.0.1:8181/v1/rerank',
