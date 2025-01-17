@@ -130,7 +130,7 @@
     }
   ],
   "dependencies": {
-    "@enconvo/api": "^0.1.152",
+    "@enconvo/api": "^0.1.161",
     "axios": "^1.6.8"
   },
   "devDependencies": {
